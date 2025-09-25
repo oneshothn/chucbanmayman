@@ -13,7 +13,7 @@
         width:0;height:0;border-left:15px solid transparent;border-right:15px solid transparent;
         border-top:25px solid red;}
     button {
-        margin-top:50px; /* ✅ tăng khoảng cách để nút cách xa mũi tên */
+        margin-top:50px; /* tăng khoảng cách */
         padding:12px 24px;
         background:#28a745;
         color:#fff;
@@ -25,9 +25,11 @@
     .popup{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);
         justify-content:center;align-items:center;}
     .popup-content{background:#fff;color:#111;padding:20px;border-radius:10px;text-align:center;max-width:300px;}
-    .popup-content h2{margin:10px 0;
+    .popup-content h2{
+        margin:10px 0;
         font-family:"Times New Roman", serif; /* ✅ đổi font cho phần thông báo */
-        font-size:20px;}
+        font-size:20px;
+    }
 </style>
 </head>
 <body>
@@ -49,15 +51,15 @@ const spinBtn=document.getElementById("spinBtn"),popup=document.getElementById("
 
 const prizes=["Giảm 5%","Giảm 10%","Giảm 15%","Giảm 20%","Giảm 50%","Giảm 25%"];
 const colors=["#f39c12","#e74c3c","#2980b9","#27ae60","#8e44ad","#f1c40f"];
-const weights=[25,23,20,10,2,20];
+const weights=[30,30,19,10,1,10];
+
 const totalSegments=prizes.length;
 const segmentAngle=360/totalSegments;
 const arcSize=(2*Math.PI)/totalSegments;
 let rotation=0,spinning=false;
-}
 
 // Giới hạn 1 lần quay
-if(localStorage.getItem("spun")==="true"){
+//if(localStorage.getItem("spun")==="true"){
     spinBtn.disabled=true;
     spinBtn.textContent="Bạn đã quay rồi!";
 }
@@ -144,6 +146,7 @@ spinBtn.addEventListener("click",spinWheel);
 </script>
 </body>
 </html>
+
 
 
 
