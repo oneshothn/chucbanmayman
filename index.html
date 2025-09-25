@@ -119,18 +119,23 @@ function spinWheel(){
         drawWheel();
         ctx.restore();
 
-        if(progress<1){
-            requestAnimationFrame(animate);
-        }else{
-            spinning=false;
-            const finalAngle=(stopAngle%360);
-            const adjustedAngle = (360 - finalAngle + 90) % 360; // mũi tên ở dưới
-            const chosenIndex = Math.floor(adjustedAngle / segmentAngle);
-            showResult(chosenIndex);
-            localStorage.setItem("spun","true"); // Lưu trạng thái đã quay
-            spinBtn.disabled=true;
-            spinBtn.textContent="Bạn đã quay rồi!";
-        }
+       if(progress<1){
+    requestAnimationFrame(animate);
+}else{
+    spinning=false;
+    const finalAngle=(stopAngle%360);
+    const adjustedAngle = (360 - finalAngle + 90) % 360; // mũi tên ở dưới
+    const chosenIndex = Math.floor(adjustedAngle / segmentAngle);
+
+    // ⏳ thêm độ trễ 1 giây cho người chơi thấy mũi tên đã dừng
+    setTimeout(()=>{
+        showResult(chosenIndex);
+        localStorage.setItem("spun","true"); // Lưu trạng thái đã quay
+        spinBtn.disabled=true;
+        spinBtn.textContent="Bạn đã quay rồi!";
+    }, 1000);
+}
+
     }
     requestAnimationFrame(animate);
 }
