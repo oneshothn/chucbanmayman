@@ -59,7 +59,7 @@ const arcSize=(2*Math.PI)/totalSegments;
 let rotation=0,spinning=false;
 
 // Giới hạn 1 lần quay
-//if(localStorage.getItem("spun")==="true"){
+if(localStorage.getItem("spun")==="true"){
     spinBtn.disabled=true;
     spinBtn.textContent="Bạn đã quay rồi!";
 }
@@ -127,7 +127,7 @@ function spinWheel(){
             const adjustedAngle = (360 - finalAngle + 90) % 360; // mũi tên ở dưới
             const chosenIndex = Math.floor(adjustedAngle / segmentAngle);
             showResult(chosenIndex);
-            //localStorage.setItem("spun","true"); // Lưu trạng thái đã quay
+            localStorage.setItem("spun","true"); // Lưu trạng thái đã quay
             spinBtn.disabled=true;
             spinBtn.textContent="Bạn đã quay rồi!";
         }
@@ -146,6 +146,7 @@ spinBtn.addEventListener("click",spinWheel);
 </script>
 </body>
 </html>
+
 
 
 
