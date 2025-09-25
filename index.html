@@ -59,10 +59,10 @@ const arcSize=(2*Math.PI)/totalSegments;
 let rotation=0,spinning=false;
 
 // Giới hạn 1 lần quay
-if(localStorage.getItem("spun")==="true"){
-    spinBtn.disabled=true;
-    spinBtn.textContent="Bạn đã quay rồi!";
-}
+//if(localStorage.getItem("spun")==="true"){
+    //spinBtn.disabled=true;
+    //spinBtn.textContent="Bạn đã quay rồi!";
+//}
 
 // Vẽ vòng quay
 function drawWheel(){
@@ -106,9 +106,15 @@ function spinWheel(){
     const duration=4000;
     const start=performance.now();
 
+    function easeOutCubic(t) {
+        return 1 - Math.pow(1 - t, 3);
+    }
+
     function animate(time){
         const elapsed=time-start;
-        const progress=Math.min(elapsed/duration,1);
+        const t=Math.min(elapsed/duration,1);
+        const progress=easeOutCubic(t); // 👉 giảm tốc
+
         rotation=stopAngle*progress;
 
         ctx.clearRect(0,0,canvas.width,canvas.height);
@@ -119,23 +125,22 @@ function spinWheel(){
         drawWheel();
         ctx.restore();
 
-       if(progress<1){
-    requestAnimationFrame(animate);
-}else{
-    spinning=false;
-    const finalAngle=(stopAngle%360);
-    const adjustedAngle = (360 - finalAngle + 90) % 360; // mũi tên ở dưới
-    const chosenIndex = Math.floor(adjustedAngle / segmentAngle);
+        if(t<1){
+            requestAnimationFrame(animate);
+        }else{
+            spinning=false;
+            const finalAngle=(stopAngle%360);
+            const adjustedAngle = (360 - finalAngle + 90) % 360;
+            const chosenIndex = Math.floor(adjustedAngle / segmentAngle);
 
-    // ⏳ thêm độ trễ 1 giây cho người chơi thấy mũi tên đã dừng
-    setTimeout(()=>{
-        showResult(chosenIndex);
-        localStorage.setItem("spun","true"); // Lưu trạng thái đã quay
-        spinBtn.disabled=true;
-        spinBtn.textContent="Bạn đã quay rồi!";
-    }, 1000);
-}
-
+            // ⏳ delay để người chơi kịp thấy mũi tên dừng
+            setTimeout(()=>{
+                showResult(chosenIndex);
+                localStorage.setItem("spun","true");
+                spinBtn.disabled=true;
+                spinBtn.textContent="Bạn đã quay rồi!";
+            }, 1000);
+        }
     }
     requestAnimationFrame(animate);
 }
