@@ -50,22 +50,6 @@ const spinBtn=document.getElementById("spinBtn"),popup=document.getElementById("
 const prizes=["Giảm 5%","Giảm 10%","Giảm 15%","Giảm 20%","Giảm 50%","Giảm 25%"];
 const colors=["#f39c12","#e74c3c","#2980b9","#27ae60","#8e44ad","#f1c40f"];
 const weights=[25,23,20,10,2,20];
-    function weightedRandom(weights) {
-  // Tính tổng
-  const total = weights.reduce((sum, w) => sum + w, 0);
-
-  // Random số trong khoảng [0, total)
-  let random = Math.random() * total;
-
-  // Duyệt qua từng weight để tìm kết quả
-  for (let i = 0; i < weights.length; i++) {
-    if (random < weights[i]) {
-      return i; // trả về index của phần tử trúng
-    }
-    random -= weights[i];
-  }
-}
-
 const totalSegments=prizes.length;
 const segmentAngle=360/totalSegments;
 const arcSize=(2*Math.PI)/totalSegments;
@@ -159,6 +143,7 @@ spinBtn.addEventListener("click",spinWheel);
 </script>
 </body>
 </html>
+
 
 
 
