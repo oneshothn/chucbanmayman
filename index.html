@@ -59,10 +59,10 @@ const arcSize=(2*Math.PI)/totalSegments;
 let rotation=0,spinning=false;
 
 // Giới hạn 1 lần quay
-//if(localStorage.getItem("spun")==="true"){
-    //spinBtn.disabled=true;
-    //spinBtn.textContent="Bạn đã quay rồi!";
-//}
+if(localStorage.getItem("spun")==="true"){
+    spinBtn.disabled=true;
+    spinBtn.textContent="Bạn đã quay rồi!";
+}
 
 // Vẽ vòng quay
 function drawWheel(){
