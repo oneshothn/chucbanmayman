@@ -49,9 +49,9 @@
 const canvas=document.getElementById("wheelCanvas"),ctx=canvas.getContext("2d");
 const spinBtn=document.getElementById("spinBtn"),popup=document.getElementById("popup"),popupText=document.getElementById("popup-text");
 
-const prizes=["Giảm 5%","Giảm 10%","Giảm 15%","Giảm 20%","Giảm 10%","Giảm 5%"];
+const prizes=["Giảm 5%","Giảm 10%","Giảm 5%","Giảm 20%","Giảm 10%","Giảm 15%"];
 const colors=["#f39c12","#e74c3c","#2980b9","#27ae60","#8e44ad","#f1c40f"];
-const weights=[40,9,1,1,9,40];
+const weights=[40,9,40,1,9,1];
 
 const totalSegments=prizes.length;
 const segmentAngle=360/totalSegments;
